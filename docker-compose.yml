@@ -7,8 +7,9 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=passwd
       - POSTGRES_DB=Blog
+      - PGPORT=6543
     ports:
-      - '5432:5432'
+      - '6543:6543'
     volumes: 
       - db:/var/lib/postgresql/data
   api:
@@ -21,6 +22,7 @@ services:
       - 3000:3000
     environment:
       DB_HOST: postgres-db
+      DB_PORT: 6543
     links:
       - postgres-db
     volumes:
