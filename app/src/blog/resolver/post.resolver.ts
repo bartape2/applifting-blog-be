@@ -37,10 +37,10 @@ export class PostResolver {
         return comment;
     }
 
-    @Mutation(returns => Post, { description: 'Edit existing post' })
+    @Mutation(returns => Boolean, { description: 'Edit existing post' })
     @UseGuards(JwtAuthGuard)
-    async updatePost(@Args('id', UuidValidationPipe) id: string, @Args('updatedPost') updatedPost: PostRequestDto) {
-        await this.postService.update(id, updatedPost);
+    async updatePost(@Args('id', UuidValidationPipe) id: string, @Args('updatedPost') updatedPost: PostRequestDto): Promise<Boolean> {
+        return await this.postService.update(id, updatedPost);
     }
 
     @Mutation(returns => Boolean, { description: 'Delete post by ID' })

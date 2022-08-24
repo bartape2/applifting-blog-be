@@ -40,7 +40,7 @@ export class PostController {
     @ApiOperation({ summary: 'Edit existing post' })
     @ApiBearerAuth()
     update(@Param('id', UuidValidationPipe) id: string, @Body() updatedPost: PostRequestDto) {
-        return this.postResolver.updatePost(id, updatedPost);
+        this.postResolver.updatePost(id, updatedPost);
     }
 
     @Delete(':id')
